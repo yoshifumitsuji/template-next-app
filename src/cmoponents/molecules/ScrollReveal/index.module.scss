@@ -3,6 +3,7 @@
 .reveal {
   width: 100%;
   opacity: 0;
+
   &.active {
     @include animation.animation(fadein 0.5s ease-out);
   }
