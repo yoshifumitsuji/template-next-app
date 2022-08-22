@@ -2,7 +2,7 @@ const path = require('path')
 
 module.exports = {
   typescript: { reactDocgen: false },
-  stories: ['../src/**/*.stories.mdx', '../src/components'],
+  stories: ['../src/stories'],
   addons: ['@storybook/addon-links', '@storybook/addon-essentials', '@storybook/addon-interactions'],
   framework: '@storybook/react',
   staticDirs: ['../public'],
@@ -11,7 +11,24 @@ module.exports = {
     config.resolve.alias['next/image'] = require.resolve('./NextImage.js')
     config.module.rules.push({
       test: /\.scss$/,
-      use: ['style-loader', 'css-loader', 'sass-loader'],
+      use: [
+        'style-loader',
+        {
+          loader: 'css-loader',
+          options: {
+            url: false,
+          },
+        },
+        {
+          loader: 'sass-loader',
+          options: {
+            additionalData: `@use "env.${process.env.NODE_ENV}.scss" as environment;`,
+            sassOptions: {
+              includePaths: [path.join(__dirname, '../src/styles')],
+            },
+          },
+        },
+      ],
     })
     return config
   },

@@ -3,19 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "env-cmd -f .env.dev next dev",
+    "build": "next build && next export",
     "start": "next start",
     "lint:script": "next lint",
     "lint:script:fix": "next lint --fix",
     "lint:style": "stylelint '**/*.{css,scss,sass}'",
     "lint:style:fix": "stylelint --fix '**/*.{css,scss,sass}'",
     "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json}'",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "env-cmd -f .env.dev start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "export:dev": "env-cmd -f .env.dev next build && next export",
+    "export:stg": "env-cmd -f .env.stg next build && next export",
+    "export:prd": "env-cmd -f .env.prd next build && next export"
   },
   "dependencies": {
+    "env-cmd": "^10.1.0",
     "next": "12.1.5",
     "react": "18.0.0",
     "react-dom": "18.0.0",
