@@ -1,13 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+const user = 'user'
+const pass = 'pass'
+
 export const middleware = (req: NextRequest) => {
   const basicAuth = req.headers.get('authorization')
 
   if (basicAuth) {
     const auth = basicAuth.split(' ')[1]
-    const [user, password] = Buffer.from(auth, 'base64').toString().split(':')
+    const [u, p] = Buffer.from(auth, 'base64').toString().split(':')
 
-    if (user === 'template' && password === 'template') {
+    if (u === user && p === pass) {
       return NextResponse.next()
     }
   }
