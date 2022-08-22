@@ -1,7 +1,7 @@
 import { action } from '@storybook/addon-actions'
 import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
 
-import { Modal } from './index'
+import { Modal } from 'src/components/organisms/Modal'
 
 export default {
   component: Modal,

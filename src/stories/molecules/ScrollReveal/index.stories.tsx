@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
 
-import { ScrollReveal } from './index'
+import { ScrollReveal } from 'src/components/molecules/ScrollReveal'
 
 export default {
   component: ScrollReveal,
