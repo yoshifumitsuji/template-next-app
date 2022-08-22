@@ -1,11 +1,11 @@
 @use 'sass:map';
-@use '../../../styles/variables.scss';
+@use '../../../styles/variables/index' as v;
 
 .modal {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: map.get(variables.$z-index, modal);
+  z-index: map.get(v.$z-index, modal);
   width: 100%;
 
   &__bg {
@@ -50,7 +50,7 @@
     position: absolute;
     top: 5px;
     right: 5px;
-    z-index: map.get(variables.$z-index, modal-close);
+    z-index: map.get(v.$z-index, modal-close);
     cursor: pointer;
   }
 }
