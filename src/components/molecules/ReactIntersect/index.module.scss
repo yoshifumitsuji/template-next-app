@@ -1,8 +1,10 @@
 @use '../../../styles/animations/fade-in';
 @use '../../../styles/mixins/index' as m;
 
-.reveal {
-  width: 100%;
+.box {
+  width: 200px;
+  height: 200px;
+  background-color: #000;
   opacity: 0;
 
   &.active {
