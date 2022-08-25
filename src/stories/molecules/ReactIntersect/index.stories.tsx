@@ -9,9 +9,9 @@ export default {
 export const Default: ComponentStoryObj<typeof ReactIntersect> = {
   decorators: [
     (Story) => (
-      <div style={{ height: '3000px' }}>
+      <div style={{ height: '300vh', background: 'linear-gradient(blue, pink)' }}>
         <p>Please scroll</p>
-        <div style={{ position: 'absolute', top: '1500px' }}>
+        <div style={{ position: 'absolute', top: '150%' }}>
           <Story />
         </div>
       </div>
