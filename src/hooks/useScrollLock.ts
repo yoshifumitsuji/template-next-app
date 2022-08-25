@@ -1,12 +1,8 @@
-import { useCallback } from 'react'
+import { useCallback, useEffect } from 'react'
 
-export const useScrollLock = () => {
-  const handleMouseWheel = useCallback((e: any) => {
-    e.preventDefault()
-  }, [])
-
-  const handleTouchMove = useCallback((e: any) => {
-    e.preventDefault()
+export const useScrollLock = (active: boolean) => {
+  const disableScroll = useCallback((event: Event) => {
+    event.preventDefault()
   }, [])
 
   const handleKeyDown = useCallback((e: any) => {
@@ -20,22 +16,21 @@ export const useScrollLock = () => {
     }
   }, [])
 
-  const lockScroll = useCallback(() => {
-    document.addEventListener('mousewheel', handleMouseWheel, { passive: false })
-    document.addEventListener('touchmove', handleTouchMove, { passive: false })
+  useEffect(() => {
+    if (!active) {
+      return
+    }
+
+    window.addEventListener('touchmove', disableScroll, { passive: false })
+    window.addEventListener('mousewheel', disableScroll, { passive: false })
     document.addEventListener('keydown', handleKeyDown, { passive: false })
     document.body.style.overflow = 'hidden'
-  }, [handleMouseWheel, handleTouchMove, handleKeyDown])
 
-  const unLockScroll = useCallback(() => {
-    document.removeEventListener('mousewheel', handleMouseWheel)
-    document.removeEventListener('touchmove', handleTouchMove)
-    document.removeEventListener('keydown', handleKeyDown)
-    document.body.style.overflow = 'visible'
-  }, [handleMouseWheel, handleTouchMove, handleKeyDown])
-
-  return {
-    lockScroll,
-    unLockScroll,
-  }
+    return () => {
+      window.removeEventListener('touchmove', disableScroll)
+      window.removeEventListener('mousewheel', disableScroll)
+      document.removeEventListener('keydown', handleKeyDown)
+      document.body.style.overflow = 'visible'
+    }
+  }, [active, disableScroll, handleKeyDown])
 }

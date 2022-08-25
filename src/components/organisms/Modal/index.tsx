@@ -1,4 +1,6 @@
-import React, { useRef, useEffect, useCallback } from 'react'
+import React from 'react'
+
+import { useModal } from 'src/hooks/useModal'
 
 import styles from './index.module.scss'
 
@@ -6,7 +8,7 @@ type MoviePlayerProps = {
   id: string
 }
 
-const MoviePlayer = React.forwardRef<HTMLIFrameElement, MoviePlayerProps>(function MoviePlayer(props, ref) {
+export const MoviePlayer = React.forwardRef<HTMLIFrameElement, MoviePlayerProps>(function MoviePlayer(props, ref) {
   return (
     <iframe
       ref={ref}
@@ -22,59 +24,18 @@ const MoviePlayer = React.forwardRef<HTMLIFrameElement, MoviePlayerProps>(functi
 
 export type ModalProps = {
   open: boolean
-  id?: string
   onClose: () => void
 }
 
 export const Modal = (props: ModalProps) => {
-  const ref = useRef<HTMLDivElement>(null)
-
-  const handleClick = useCallback(
-    (event: any) => {
-      const element = ref.current
-      if (props.open && !element?.contains(event.target)) {
-        props.onClose()
-      }
-    },
-    [props]
-  )
-
-  const disableScroll = useCallback((event: Event) => {
-    event.preventDefault()
-  }, [])
-
-  useEffect(() => {
-    if (props.open) {
-      window.addEventListener('click', handleClick, { passive: false })
-      window.addEventListener('touchstart', handleClick, { passive: false })
-      window.addEventListener('touchmove', disableScroll, { passive: false })
-      window.addEventListener('mousewheel', disableScroll, { passive: false })
-    } else {
-      window.removeEventListener('click', handleClick)
-      window.removeEventListener('touchstart', handleClick)
-      window.removeEventListener('touchmove', disableScroll)
-      window.removeEventListener('mousewheel', disableScroll)
-    }
-    return () => {
-      window.removeEventListener('click', handleClick)
-      window.removeEventListener('touchmove', disableScroll)
-      window.removeEventListener('mousewheel', disableScroll)
-    }
-  }, [disableScroll, handleClick, props.open])
-
-  if (!props.open) {
-    return null
-  }
+  const { open, ref, handleClose } = useModal('common')
 
   return (
-    <div className={styles.modal}>
-      <div className={styles.modal__bg} />
-      <div className={styles.modal__wrapper}>
-        <div className={styles.modal__content} ref={ref}>
-          <button className={styles.modal__close} onClick={props.onClose}>
-            Close
-          </button>
-        </div>
+    <div className={`${styles.modal} ${open ? styles.active : ''}`}>
+      <div className={styles.content} ref={ref}>
+        <button className={styles.close} onClick={handleClose}>
+          ×
+        </button>
       </div>
     </div>
   )

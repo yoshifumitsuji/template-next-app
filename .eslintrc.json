@@ -1,5 +1,5 @@
 {
-  "plugins": ["unused-imports"],
+  "plugins": ["react-hooks", "unused-imports"],
   "extends": [
     "next",
     "next/core-web-vitals",
@@ -9,18 +9,12 @@
     "prettier"
   ],
   "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
     "import/order": [
       "error",
       {
-        "groups": [
-          "builtin",
-          "external",
-          "internal",
-          ["parent", "sibling"],
-          "object",
-          "type",
-          "index"
-        ],
+        "groups": ["builtin", "external", "internal", ["parent", "sibling"], "object", "type", "index"],
         "newlines-between": "always",
         "pathGroupsExcludedImportTypes": ["builtin"],
         "alphabetize": {
@@ -41,6 +35,7 @@
         ]
       }
     ],
+
     "unused-imports/no-unused-imports": "error",
     "@next/next/no-img-element": "off"
   }
