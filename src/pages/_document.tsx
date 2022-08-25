@@ -12,6 +12,7 @@ import {
   TWITTER_IMAGE,
   TWITTER_URL,
   FAV_DIR,
+  GTM_ID,
 } from 'src/config'
 
 class MyDocument extends Document {
@@ -46,6 +47,14 @@ class MyDocument extends Document {
           <meta name='theme-color' content='#ffffff' />
         </NextHead>
         <body>
+          <noscript>
+            <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+              height='0'
+              width='0'
+              style={{ display: 'none', visibility: 'hidden' }}
+            />
+          </noscript>
           <Main />
           <NextScript />
         </body>

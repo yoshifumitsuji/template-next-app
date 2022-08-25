@@ -15,3 +15,5 @@ export const TWITTER_URL = ''
 
 export const IMG_DIR = process.env.NEXT_PUBLIC_IMG_DIR
 export const FAV_DIR = process.env.NEXT_PUBLIC_FAVICON_DIR
+
+export const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID
