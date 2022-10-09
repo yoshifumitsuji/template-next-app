@@ -6,13 +6,14 @@ import {
   OG_URL,
   OG_TITLE,
   OG_DESCRIPTION,
-  TWITTER_TITLE,
-  TWITTER_DESCRIPTION,
   OG_IMAGE,
-  TWITTER_IMAGE,
-  TWITTER_URL,
   FAV_DIR,
   GTM_ID,
+  TW_DESCRIPTION,
+  TW_IMAGE,
+  TW_TITLE,
+  TW_URL,
+  META_THUMBNAIL,
 } from 'src/config'
 
 class MyDocument extends Document {
@@ -22,6 +23,7 @@ class MyDocument extends Document {
         <NextHead>
           <title>{META_TITLE}</title>
           <meta name='description' content={META_DESCRIPTION} />
+          <meta name='thumbnail' content={META_THUMBNAIL ?? OG_DESCRIPTION} />
           <meta name='viewport' content='width=device-width, initial-scale=1.0' />
           {/* ogp */}
           <meta property='og:type' content='website' />
@@ -32,10 +34,10 @@ class MyDocument extends Document {
           <meta property='og:site_name' content={META_TITLE} />
           {/* twitter */}
           <meta name='twitter:card' content='summary_large_image' />
-          <meta name='twitter:title' content={TWITTER_TITLE ?? META_TITLE} />
-          <meta name='twitter:description' content={TWITTER_DESCRIPTION ?? META_DESCRIPTION} />
-          <meta name='twitter:image' content={TWITTER_IMAGE ?? OG_IMAGE} />
-          <meta name='twitter:url' content={TWITTER_URL ?? OG_URL} />
+          <meta name='twitter:title' content={TW_TITLE ?? META_TITLE} />
+          <meta name='twitter:description' content={TW_DESCRIPTION ?? META_DESCRIPTION} />
+          <meta name='twitter:image' content={TW_IMAGE ?? OG_IMAGE} />
+          <meta name='twitter:url' content={TW_URL ?? OG_URL} />
           {/* favicon */}
           <link rel='icon' href={`${FAV_DIR}/favicon.ico`} />
           <link rel='apple-touch-icon' sizes='180x180' href={`${FAV_DIR}/apple-touch-icon.png`} />
