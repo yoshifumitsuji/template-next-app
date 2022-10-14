@@ -8,12 +8,8 @@
   ],
   "rules": {
     "string-quotes": "single",
-    "order/order": ["custom-properties", "declarations"],
-    "at-rule-no-unknown": [true, { "ignoreAtRules": ["include", "mixin", "use"] }],
-    "property-no-unknown": [true, { "ignoreProperties": ["composes"] }],
-    "function-no-unknown": [true, { "ignoreFunctions": ["map.get"] }],
-    "number-max-precision": 15,
-    "keyframes-name-pattern": "[a-z]+"
+    "keyframes-name-pattern": "[a-z]+",
+    "order/order": ["custom-properties", "declarations"]
   },
   "ignoreFiles": ["**/node_modules/**"]
 }

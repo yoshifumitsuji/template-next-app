@@ -1,4 +1,6 @@
-@use '../../../styles/animation';
+@use '../../../styles/mixins/index' as m;
+@use '../../../styles/animations/bound';
+@use '../../../styles/animations/bound-shadow';
 
 .full {
   position: fixed;
@@ -34,7 +36,7 @@
   background-color: #853a0e;
   border-radius: 50%;
   transform-origin: 50%;
-  @include animation.animation(circle 0.5s alternate infinite ease);
+  @include m.animation(bound 0.5s alternate infinite ease);
 }
 
 .circle:nth-child(2) {
@@ -59,7 +61,7 @@
   filter: blur(1px);
   border-radius: 50%;
   transform-origin: 50%;
-  @include animation.animation(shadow 1s alternate infinite ease);
+  @include m.animation(bound-shadow 1s alternate infinite ease);
 }
 
 .shadow:nth-child(4) {

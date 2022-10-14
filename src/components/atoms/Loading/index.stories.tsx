@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
 
-import { Loading } from './index'
+import { Loading } from 'src/components/atoms/Loading'
 
 export default {
   component: Loading,
